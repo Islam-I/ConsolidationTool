@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolidationTool.Data", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolidationTool.Repository", "ConsolidationTool.Repository\ConsolidationTool.Repository.csproj", "{4A2DE31C-0184-4B4A-8EB1-8B5450671952}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolidationTool.Dto", "ConsolidationTool.Dto\ConsolidationTool.Dto.csproj", "{45201B64-2C1E-4E21-9B53-9B422FAEA566}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolidationTool.Core", "ConsolidationTool.Dto\ConsolidationTool.Core.csproj", "{45201B64-2C1E-4E21-9B53-9B422FAEA566}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolidationTool.Service", "ConsolidationTool.Service\ConsolidationTool.Service.csproj", "{DC8A46BF-6A94-41DB-8628-5DA4DAA4BA42}"
 EndProject
