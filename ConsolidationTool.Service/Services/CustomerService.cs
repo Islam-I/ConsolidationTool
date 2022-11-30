@@ -23,5 +23,12 @@ namespace ConsolidationTool.Service.Services
             else
                 return await unitOfWork.GetRepository<Customer>().GetAll();
         }
+
+        public async Task<Customer> GetById(int id)
+        {
+            //if (id != null)
+                return await unitOfWork.GetRepository<Customer>().GetById(id);
+
+        }
     }
 }
