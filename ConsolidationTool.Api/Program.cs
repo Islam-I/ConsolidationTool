@@ -1,5 +1,8 @@
 using ConsolidationTool.Data.DatabaseContext;
 using ConsolidationTool.Data.Models;
+using ConsolidationTool.Repository.UnitOfWork;
+using ConsolidationTool.Service.Interfaces;
+using ConsolidationTool.Service.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +17,8 @@ builder.Services.AddDbContext<TestDBContext>(
 );
 
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = false;

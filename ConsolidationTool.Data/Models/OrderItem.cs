@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ConsolidationTool.Data.Models
 {
-    public partial class OrderItem
+    public partial class OrderItem : CommonProperties
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

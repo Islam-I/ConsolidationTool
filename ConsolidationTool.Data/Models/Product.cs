@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ConsolidationTool.Data.Models
 {
-    public partial class Product
+    public partial class Product : CommonProperties
     {
         public Product()
         {

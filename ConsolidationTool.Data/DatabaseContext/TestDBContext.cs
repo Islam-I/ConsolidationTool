@@ -11,15 +11,13 @@ namespace ConsolidationTool.Data.DatabaseContext
 {
     public class TestDBContext : IdentityDbContext<ApplicationUser>
     {
-        public TestDBContext()
-        {
-        }
-
         public TestDBContext(DbContextOptions<TestDBContext> options)
             : base(options)
         {
         }
-
+        public TestDBContext()
+        {
+        }
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderItem> OrderItem { get; set; }
