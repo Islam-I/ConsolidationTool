@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ConsolidationTool.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ConsolidationTool.Data.DatabaseContext
 {
-    public partial class TestDBContext : DbContext
+    public class TestDBContext : IdentityDbContext<ApplicationUser>
     {
         public TestDBContext()
         {
@@ -24,6 +25,7 @@ namespace ConsolidationTool.Data.DatabaseContext
         public virtual DbSet<OrderItem> OrderItem { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +37,8 @@ namespace ConsolidationTool.Data.DatabaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasIndex(e => new { e.LastName, e.FirstName }, "IndexCustomerName");
@@ -154,9 +158,7 @@ namespace ConsolidationTool.Data.DatabaseContext
                 entity.Property(e => e.Phone).HasMaxLength(30);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            base.OnModelCreating(modelBuilder);
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
