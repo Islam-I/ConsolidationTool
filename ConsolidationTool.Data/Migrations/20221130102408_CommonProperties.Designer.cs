@@ -4,6 +4,7 @@ using ConsolidationTool.Data.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsolidationTool.Data.Migrations
 {
     [DbContext(typeof(TestDBContext))]
-    partial class TestDBContextModelSnapshot : ModelSnapshot
+    [Migration("20221130102408_CommonProperties")]
+    partial class CommonProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,16 +116,17 @@ namespace ConsolidationTool.Data.Migrations
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
 
-                    b.Property<int?>("FormID")
+                    b.Property<int>("FormID")
                         .HasColumnType("int");
 
                     b.Property<string>("InsertedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InsertedBy")
+                    b.Property<int>("InsertedBy")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted_YN")
+                    b.Property<bool>("IsDeleted_YN")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -136,9 +139,10 @@ namespace ConsolidationTool.Data.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UpdatedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -159,16 +163,17 @@ namespace ConsolidationTool.Data.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FormID")
+                    b.Property<int>("FormID")
                         .HasColumnType("int");
 
                     b.Property<string>("InsertedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InsertedBy")
+                    b.Property<int>("InsertedBy")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted_YN")
+                    b.Property<bool>("IsDeleted_YN")
                         .HasColumnType("bit");
 
                     b.Property<DateTime>("OrderDate")
@@ -186,9 +191,10 @@ namespace ConsolidationTool.Data.Migrations
                         .HasDefaultValueSql("((0))");
 
                     b.Property<string>("UpdatedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -208,16 +214,17 @@ namespace ConsolidationTool.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("FormID")
+                    b.Property<int>("FormID")
                         .HasColumnType("int");
 
                     b.Property<string>("InsertedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InsertedBy")
+                    b.Property<int>("InsertedBy")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted_YN")
+                    b.Property<bool>("IsDeleted_YN")
                         .HasColumnType("bit");
 
                     b.Property<int>("OrderId")
@@ -235,9 +242,10 @@ namespace ConsolidationTool.Data.Migrations
                         .HasColumnType("decimal(12,2)");
 
                     b.Property<string>("UpdatedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -257,16 +265,17 @@ namespace ConsolidationTool.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("FormID")
+                    b.Property<int>("FormID")
                         .HasColumnType("int");
 
                     b.Property<string>("InsertedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InsertedBy")
+                    b.Property<int>("InsertedBy")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted_YN")
+                    b.Property<bool>("IsDeleted_YN")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDiscontinued")
@@ -300,9 +309,10 @@ namespace ConsolidationTool.Data.Migrations
                         .HasDefaultValueSql("((0))");
 
                     b.Property<string>("UpdatedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -347,16 +357,17 @@ namespace ConsolidationTool.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int?>("FormID")
+                    b.Property<int>("FormID")
                         .HasColumnType("int");
 
                     b.Property<string>("InsertedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("InsertedBy")
+                    b.Property<int>("InsertedBy")
                         .HasColumnType("int");
 
-                    b.Property<bool?>("IsDeleted_YN")
+                    b.Property<bool>("IsDeleted_YN")
                         .HasColumnType("bit");
 
                     b.Property<string>("Phone")
@@ -364,9 +375,10 @@ namespace ConsolidationTool.Data.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("UpdatedAt")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UpdatedBy")
+                    b.Property<int>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
