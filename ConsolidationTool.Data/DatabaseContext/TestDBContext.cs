@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ConsolidationTool.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ConsolidationTool.Data.EntityTypeConfigurations;
 
 namespace ConsolidationTool.Data.DatabaseContext
 {
@@ -35,8 +36,6 @@ namespace ConsolidationTool.Data.DatabaseContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasIndex(e => new { e.LastName, e.FirstName }, "IndexCustomerName");
@@ -156,6 +155,7 @@ namespace ConsolidationTool.Data.DatabaseContext
                 entity.Property(e => e.Phone).HasMaxLength(30);
             });
 
+            modelBuilder.ApplyConfiguration(new BaseEntityTypeConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

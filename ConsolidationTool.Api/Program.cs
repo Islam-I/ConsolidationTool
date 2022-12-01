@@ -2,7 +2,9 @@ using ConsolidationTool.Data.DatabaseContext;
 using ConsolidationTool.Data.Models;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Interfaces;
+using ConsolidationTool.Service.Interfaces.UserManagement;
 using ConsolidationTool.Service.Services;
+using ConsolidationTool.Service.Services.UserManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

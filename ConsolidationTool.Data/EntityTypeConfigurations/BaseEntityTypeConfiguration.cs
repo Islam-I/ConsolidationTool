@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ConsolidationTool.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Data.EntityTypeConfigurations
 {
-    public abstract class BaseEntityTypeConfiguration<T> : IEntityTypeConfiguration<T>
-    where T : class
+    public class BaseEntityTypeConfiguration : IEntityTypeConfiguration<Customer>
     {
-        public virtual void Configure(EntityTypeBuilder<T> builder)
+        public virtual void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.Property<bool>("IsDeleted")
                 .IsRequired()

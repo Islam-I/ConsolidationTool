@@ -1,4 +1,5 @@
-﻿using ConsolidationTool.Service.Interfaces;
+﻿using ConsolidationTool.Core.Dtos;
+using ConsolidationTool.Service.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,12 @@ namespace ConsolidationTool.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var result = await _customerService.GetAll();
+            return Ok(result);
+        }
+        [HttpPost("AddOneCustomer")]
+        public async Task<IActionResult> AddOneEmployee(CustomerInputDto input)
+        {
+            var result = await _customerService.AddOne(input);
             return Ok(result);
         }
     }

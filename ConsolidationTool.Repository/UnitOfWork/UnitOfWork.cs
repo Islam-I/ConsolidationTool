@@ -27,7 +27,6 @@ namespace ConsolidationTool.Repository.UnitOfWork
             _repositories.Add(newType, new BaseRepository<T>(_context));
             return (BaseRepository<T>)_repositories[newType];
         }
-
         public string Complete()
         {
             _context.SaveChanges();
