@@ -25,7 +25,7 @@ namespace ConsolidationTool.Service.Services
             model.LastName = input.LastName;
             model.FirstName = input.FirstName;
             model.Phone = input.Phone;
-            await unitOfWork.GetRepository<Customer>().Add(model);
+            await unitOfWork.GetRepository<Customer>().add(model);
             await unitOfWork.CompleteAsync();
             return "success";
         }
