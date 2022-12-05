@@ -93,48 +93,6 @@ namespace ConsolidationTool.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ConsolidationTool.Data.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<int>("FormID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InsertedBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex(new[] { "Name" }, "IndexCategoryName");
-
-                    b.ToTable("Category");
-                });
-
             modelBuilder.Entity("ConsolidationTool.Data.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
@@ -308,100 +266,6 @@ namespace ConsolidationTool.Data.Migrations
                     b.HasIndex(new[] { "SupplierId" }, "IndexProductSupplierId");
 
                     b.ToTable("Product");
-                });
-
-            modelBuilder.Entity("ConsolidationTool.Data.Models.Property", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<int>("FormID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InsertedBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<int>("SubCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubCategoryId");
-
-                    b.HasIndex(new[] { "Name" }, "IndexPropertyName");
-
-                    b.ToTable("Property");
-                });
-
-            modelBuilder.Entity("ConsolidationTool.Data.Models.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<int>("FormID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("InsertedBy")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex(new[] { "Name" }, "IndexSubCategoryName");
-
-                    b.ToTable("SubCategory");
                 });
 
             modelBuilder.Entity("ConsolidationTool.Data.Models.Supplier", b =>
@@ -624,28 +488,6 @@ namespace ConsolidationTool.Data.Migrations
                     b.Navigation("Supplier");
                 });
 
-            modelBuilder.Entity("ConsolidationTool.Data.Models.Property", b =>
-                {
-                    b.HasOne("ConsolidationTool.Data.Models.SubCategory", "SubCategory")
-                        .WithMany("Property")
-                        .HasForeignKey("SubCategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_PROPERTY_REFERENCE_SUBCATEGORY");
-
-                    b.Navigation("SubCategory");
-                });
-
-            modelBuilder.Entity("ConsolidationTool.Data.Models.SubCategory", b =>
-                {
-                    b.HasOne("ConsolidationTool.Data.Models.Category", "Category")
-                        .WithMany("SubCategory")
-                        .HasForeignKey("CategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_SUBCATEGORY_REFERENCE_CATEGORY");
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -697,11 +539,6 @@ namespace ConsolidationTool.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ConsolidationTool.Data.Models.Category", b =>
-                {
-                    b.Navigation("SubCategory");
-                });
-
             modelBuilder.Entity("ConsolidationTool.Data.Models.Customer", b =>
                 {
                     b.Navigation("Order");
@@ -715,11 +552,6 @@ namespace ConsolidationTool.Data.Migrations
             modelBuilder.Entity("ConsolidationTool.Data.Models.Product", b =>
                 {
                     b.Navigation("OrderItem");
-                });
-
-            modelBuilder.Entity("ConsolidationTool.Data.Models.SubCategory", b =>
-                {
-                    b.Navigation("Property");
                 });
 
             modelBuilder.Entity("ConsolidationTool.Data.Models.Supplier", b =>

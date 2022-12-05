@@ -52,7 +52,6 @@ namespace ConsolidationTool.Repository.GenericRepository
         {
             _dbSet.Attach(obj);
             _context.Entry(obj).State = EntityState.Modified;
-            
             try
             {
                 _dbSet.Attach(obj);
@@ -65,6 +64,6 @@ namespace ConsolidationTool.Repository.GenericRepository
             };
         }
 
-        //TODO: add delete and others
+        //TODO: add delete on others
     }
 }
