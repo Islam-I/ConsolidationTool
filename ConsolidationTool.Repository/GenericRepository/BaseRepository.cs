@@ -1,12 +1,6 @@
 ﻿using ConsolidationTool.Data.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsolidationTool.Repository.GenericRepository
 {
@@ -24,7 +18,8 @@ namespace ConsolidationTool.Repository.GenericRepository
         {
             return await _dbSet.FindAsync(id);
         }
-        public async Task<string> add(T obj)
+
+        public async Task<string> Add(T obj)
         {
             try
             {
@@ -36,11 +31,11 @@ namespace ConsolidationTool.Repository.GenericRepository
                 return "Failed with error : " + e.Message;
             };
         }
-        public async Task<string> addRange(List<T> emp)
+        public async Task<string> AddRange(List<T> obj)
         {
             try
             {
-                await _dbSet.AddRangeAsync(emp);
+                await _dbSet.AddRangeAsync(obj);
                 return "success";
             }
             catch (Exception e)
@@ -68,5 +63,7 @@ namespace ConsolidationTool.Repository.GenericRepository
                 return "Failed with error : " + e.Message;
             };
         }
+
+        //TODO: add delete on others
     }
 }
