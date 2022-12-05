@@ -22,6 +22,7 @@ builder.Services.AddDbContext<TestDBContext>(
 );
 
 
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
@@ -60,20 +61,11 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<TestDBContext>();
-
-    context.Database.Migrate();
-};
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
