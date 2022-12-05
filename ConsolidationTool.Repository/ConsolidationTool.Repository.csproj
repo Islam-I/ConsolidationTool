@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="NonGenericRepository\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ConsolidationTool.Data\ConsolidationTool.Data.csproj" />
   </ItemGroup>
 

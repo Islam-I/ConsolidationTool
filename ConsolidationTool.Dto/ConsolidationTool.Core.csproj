@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Interfaces\" />
     <Folder Include="Enums\" />
     <Folder Include="Mappers\" />
     <Folder Include="Models\" />

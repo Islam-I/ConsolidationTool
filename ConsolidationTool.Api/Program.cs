@@ -15,7 +15,6 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<TestDBContext>(
@@ -24,7 +23,9 @@ builder.Services.AddDbContext<TestDBContext>(
 
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+
 
 builder.Services.AddScoped<IAccountServices, AccountSerivces>();
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
@@ -35,7 +36,6 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
     .AddEntityFrameworkStores<TestDBContext>()
     .AddDefaultTokenProviders();
-
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
 {
@@ -43,7 +43,6 @@ builder.Services.AddAuthentication(options =>
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
