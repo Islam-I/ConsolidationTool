@@ -1,5 +1,4 @@
 ﻿using ConsolidationTool.Repository.GenericRepository;
-using ConsolidationTool.Repository.NonGenericRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +13,4 @@ namespace ConsolidationTool.Repository.UnitOfWork
         string Complete();
         Task<string> CompleteAsync();
     }
-
-    //public interface IUnitOfWork : IDisposable
-    //{
-    //    ICategoryRepository Category { get; }
-    //    ISubCategoryRepository SubCategory { get; }
-    //    IPropertyRepository Property { get; }
-
-    //    int Save();
-    //}
 }

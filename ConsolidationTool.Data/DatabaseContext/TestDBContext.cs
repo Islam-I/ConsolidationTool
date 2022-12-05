@@ -19,69 +19,23 @@ namespace ConsolidationTool.Data.DatabaseContext
         public TestDBContext()
         {
         }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<SubCategory> SubCategory { get; set; }
-        public virtual DbSet<Property> Property { get; set; }
-        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
-
-
-
-        // To be deleted
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrderItem> OrderItem { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
+            //if (!optionsBuilder.IsConfigured)
+            //{
+            //    optionsBuilder.UseSqlServer("Server=.;Database=DbTestStructure;Trusted_Connection=true;MultipleActiveResultSets=true;Encrypt=False;");
+            //}
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.HasIndex(e => new { e.Name}, "IndexCategoryName");
-
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(32);
-
-                entity.Property(e => e.Description).HasMaxLength(128);
-            });
-
-            modelBuilder.Entity<SubCategory>(entity =>
-            {
-                entity.HasIndex(e => new { e.Name }, "IndexSubCategoryName");
-
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(32);
-
-                entity.Property(e => e.Description).HasMaxLength(128);
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.SubCategory)
-                    .HasForeignKey(d => d.CategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_SUBCATEGORY_REFERENCE_CATEGORY");
-            });
-
-            modelBuilder.Entity<Property>(entity =>
-            {
-                entity.HasIndex(e => new { e.Name }, "IndexPropertyName");
-
-                entity.Property(e => e.Name).IsRequired().HasMaxLength(32);
-
-                entity.Property(e => e.Description).HasMaxLength(128);
-
-                entity.HasOne(d => d.SubCategory)
-                    .WithMany(p => p.Property)
-                    .HasForeignKey(d => d.SubCategoryId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PROPERTY_REFERENCE_SUBCATEGORY");
-            });
-
-
-
-            // To be deleted
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasIndex(e => new { e.LastName, e.FirstName }, "IndexCustomerName");
