@@ -7,13 +7,15 @@ namespace ConsolidationTool.Repository.GenericRepository
 
     public class BaseRepository<T> where T : class
     {
-        private TestDBContext _context;
-        private DbSet<T> _dbSet;
+        private readonly TestDBContext _context;
+        private readonly DbSet<T> _dbSet;
+
         public BaseRepository(TestDBContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
         }
+
         public async Task<T> GetById(int id)
         {
             return await _dbSet.FindAsync(id);
@@ -31,6 +33,7 @@ namespace ConsolidationTool.Repository.GenericRepository
                 return "Failed with error : " + e.Message;
             };
         }
+
         public async Task<string> AddRange(List<T> obj)
         {
             try
@@ -43,6 +46,7 @@ namespace ConsolidationTool.Repository.GenericRepository
                 return "Failed with error : " + e.Message;
             };
         }
+
         public async Task<List<T>> GetAll(Expression<Func<T, bool>> filter = null)
         {
             return filter == null ? await _dbSet.ToListAsync() : await _dbSet.Where(filter).ToListAsync();
@@ -65,6 +69,5 @@ namespace ConsolidationTool.Repository.GenericRepository
             };
         }
 
-        //TODO: add delete and others
     }
 }

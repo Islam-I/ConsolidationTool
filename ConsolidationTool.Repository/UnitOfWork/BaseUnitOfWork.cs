@@ -1,7 +1,5 @@
 ﻿using ConsolidationTool.Data.DatabaseContext;
-using ConsolidationTool.Data.Models;
 using ConsolidationTool.Repository.GenericRepository;
-using ConsolidationTool.Repository.NonGenericRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Repository.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class BaseUnitOfWork : IUnitOfWork
     {
         private readonly TestDBContext _context;
         private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
 
-        public UnitOfWork(TestDBContext context)
+        public BaseUnitOfWork(TestDBContext context)
         {
             _context = context;
         }
@@ -48,42 +46,4 @@ namespace ConsolidationTool.Repository.UnitOfWork
             _context.Dispose();
         }
     }
-
-    //public class UnitOfWork : IUnitOfWork
-    //{
-    //    private readonly TestDBContext _context;
-
-    //    public UnitOfWork(TestDBContext context)
-    //    {
-    //        Category = new CategoryRepository(_context);
-    //        SubCategory = new SubCategoryRepository(_context);
-    //        Property = new PropertyRepository(_context);
-    //        _context = context;
-    //    }
-    //    public ICategoryRepository Category
-    //    {
-    //        get;
-    //        private set;
-    //    }
-    //    public ISubCategoryRepository SubCategory
-    //    {
-    //        get;
-    //        private set;
-    //    }
-    //    public IPropertyRepository Property
-    //    {
-    //        get;
-    //        private set;
-    //    }
-    //    public void Dispose()
-    //    {
-    //        _context.Dispose();
-    //    }
-    //    public int Save()
-    //    {
-    //        return _context.SaveChanges();
-    //    }
-    //}
-
 }
-

@@ -21,11 +21,9 @@ builder.Services.AddDbContext<TestDBContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
-
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-
 
 builder.Services.AddScoped<IAccountServices, AccountSerivces>();
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
