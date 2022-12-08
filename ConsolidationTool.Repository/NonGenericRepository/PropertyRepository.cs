@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Repository.NonGenericRepository
 {
-    public class PropertyRepository : GenericRepository<Property>, IPropertyRepository { 
+    public class PropertyRepository : BaseRepository<Property>, IPropertyRepository { 
         public PropertyRepository(TestDBContext context) : base(context) { }
     }
 }

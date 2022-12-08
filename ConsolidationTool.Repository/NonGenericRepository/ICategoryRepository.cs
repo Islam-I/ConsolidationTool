@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Repository.NonGenericRepository
 {
-    public interface ICategoryRepository : IGenericRepository<Category>
+    public interface ICategoryRepository : IBaseRepository<Category>
     {
 
     }

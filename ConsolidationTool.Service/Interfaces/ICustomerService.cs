@@ -10,8 +10,8 @@ namespace ConsolidationTool.Service.Interfaces
 {
     public interface ICustomerService
     {
-        Task<List<Customer>> GetAll(int id = 0);
-        //Task<Customer> GetById(int id);
+        Task<IEnumerable<Customer>> GetAll();
+        Task<Customer> GetById(int id);
         Task<string> AddOne(CustomerInputDto input);
     }
 }

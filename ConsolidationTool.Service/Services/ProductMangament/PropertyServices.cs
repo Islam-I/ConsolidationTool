@@ -10,33 +10,33 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Service.Services.ProductMangament
 {
-    public class CategoryServices : ICategoryServices
+    public class PropertyServices : IPropertyServices
     {
         public IUnitOfWork _unitOfWork { get; set; }
-        public CategoryServices(IUnitOfWork unitOfWork)
+        public PropertyServices(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-
-        public async Task<string> AddOneAsync(CategoryDto input)
+        public async Task<string> AddOneAsync(PropertyDto input)
         {
-            Category model = new Category();
+            Property model = new Property();
             model.Name = input.Name;
             model.Description = input.Description;
-            await _unitOfWork.GetRepository<Category>().AddAsync(model);
+            model.SubCategoryId = input.SubCategoryId;
+            await _unitOfWork.GetRepository<Property>().AddAsync(model);
             await _unitOfWork.CompleteAsync();
             return "success";
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<Property>> GetAllAsync()
         {
-            return await _unitOfWork.GetRepository<Category>().GetAllAsync();
+                return await _unitOfWork.GetRepository<Property>().GetAllAsync();
         }
 
-        public async Task<Category> GetByIdAsync(int id)
+        public async Task<Property> GetByIdAsync(int id)
         {
-            return await _unitOfWork.GetRepository<Category>().GetByIdAsync(id);
-        }
+            return await _unitOfWork.GetRepository<Property>().GetByIdAsync(id);
 
+        }
     }
 }

@@ -13,11 +13,24 @@ namespace ConsolidationTool.Repository.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly TestDBContext _context;
+
+        public IBaseRepository<Category> Category { get; private set; }
+        public IBaseRepository<SubCategory> SubCategory { get; private set; }
+        public IBaseRepository<Property> Property { get; private set; }
+
+
         private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
+        //public IBooksRepository Books { get; private set; }
 
         public UnitOfWork(TestDBContext context)
         {
             _context = context;
+
+            Category = new BaseRepository<Category>(_context);
+            SubCategory = new BaseRepository<SubCategory>(_context);
+            Property = new BaseRepository<Property>(_context);
+
+            //Books = new BooksRepository(_context);
         }
 
         public BaseRepository<T> GetRepository<T>(bool newRepo = false) where T : class//BaseEntity
@@ -31,16 +44,15 @@ namespace ConsolidationTool.Repository.UnitOfWork
             return (BaseRepository<T>)_repositories[newType];
         }
 
-        public string Complete()
+        public int Complete()
         {
-            _context.SaveChanges();
-            return "";
+            return _context.SaveChanges();
         }
 
-        public async Task<string> CompleteAsync()
+        public async Task<int> CompleteAsync()
         {
-            await _context.SaveChangesAsync();
-            return "";
+            var result = await _context.SaveChangesAsync();
+            return result;
         }
 
         public void Dispose()
@@ -48,6 +60,45 @@ namespace ConsolidationTool.Repository.UnitOfWork
             _context.Dispose();
         }
     }
+
+    //public class UnitOfWork : IUnitOfWork
+    //{
+    //    private readonly TestDBContext _context;
+    //    private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
+
+    //    public UnitOfWork(TestDBContext context)
+    //    {
+    //        _context = context;
+    //    }
+
+    //    public BaseRepository<T> GetRepository<T>(bool newRepo = false) where T : class//BaseEntity
+    //    {
+    //        Type newType = typeof(T);
+    //        if (_repositories.ContainsKey(newType))
+    //        {
+    //            _repositories.Remove(newType);
+    //        }
+    //        _repositories.Add(newType, new BaseRepository<T>(_context));
+    //        return (BaseRepository<T>)_repositories[newType];
+    //    }
+
+    //    public string Complete()
+    //    {
+    //        _context.SaveChanges();
+    //        return "";
+    //    }
+
+    //    public async Task<string> CompleteAsync()
+    //    {
+    //        await _context.SaveChangesAsync();
+    //        return "";
+    //    }
+
+    //    public void Dispose()
+    //    {
+    //        _context.Dispose();
+    //    }
+    //}
 
     //public class UnitOfWork : IUnitOfWork
     //{

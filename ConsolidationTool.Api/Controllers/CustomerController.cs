@@ -14,14 +14,16 @@ namespace ConsolidationTool.Api.Controllers
         {
             _customerService = customerService;
         }
+
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _customerService.GetAll();
             return Ok(result);
         }
+
         [HttpPost("AddOneCustomer")]
-        public async Task<IActionResult> AddOneEmployee(CustomerInputDto input)
+        public async Task<IActionResult> AddOneCustomer(CustomerInputDto input)
         {
             var result = await _customerService.AddOne(input);
             return Ok(result);

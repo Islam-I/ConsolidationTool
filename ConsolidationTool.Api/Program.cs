@@ -3,8 +3,10 @@ using ConsolidationTool.Data.Models;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Helpers;
 using ConsolidationTool.Service.Interfaces;
+using ConsolidationTool.Service.Interfaces.ProductManagement;
 using ConsolidationTool.Service.Interfaces.UserManagement;
 using ConsolidationTool.Service.Services;
+using ConsolidationTool.Service.Services.ProductMangament;
 using ConsolidationTool.Service.Services.UserManagement;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +26,9 @@ builder.Services.AddDbContext<TestDBContext>(
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+builder.Services.AddScoped<ISubCategoryServices, SubCategoryServices>();
+builder.Services.AddScoped<IPropertyServices, PropertyServices>();
 
 builder.Services.AddScoped<IAccountServices, AccountSerivces>();
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();

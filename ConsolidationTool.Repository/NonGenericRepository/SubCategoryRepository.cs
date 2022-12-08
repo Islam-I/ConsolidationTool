@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Repository.NonGenericRepository
 {
-    public class SubCategoryRepository : GenericRepository<SubCategory>, ISubCategoryRepository
+    public class SubCategoryRepository : BaseRepository<SubCategory>, ISubCategoryRepository
     {
         public SubCategoryRepository(TestDBContext context) : base(context) { }
     }

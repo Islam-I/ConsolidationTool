@@ -2,11 +2,6 @@
 using ConsolidationTool.Data.Models;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsolidationTool.Service.Services
 {
@@ -27,22 +22,19 @@ namespace ConsolidationTool.Service.Services
             model.LastName = input.LastName;
             model.FirstName = input.FirstName;
             model.Phone = input.Phone;
-            await _unitOfWork.GetRepository<Customer>().Add(model);
+            await _unitOfWork.GetRepository<Customer>().AddAsync(model);
             await _unitOfWork.CompleteAsync();
             return "success";
         }
-        public async Task<List<Customer>> GetAll(int id = 0)
+        public async Task<IEnumerable<Customer>> GetAll()
         {
-            if (id != 0)
-                return await _unitOfWork.GetRepository<Customer>().GetAll(a => a.Id == id);
-            else
-                return await _unitOfWork.GetRepository<Customer>().GetAll();
+            return await _unitOfWork.GetRepository<Customer>().GetAllAsync();
         }
 
         public async Task<Customer> GetById(int id)
         {
-            //if (id != null)
-                return await _unitOfWork.GetRepository<Customer>().GetById(id);
+
+            return await _unitOfWork.GetRepository<Customer>().GetByIdAsync(id);
 
         }
     }

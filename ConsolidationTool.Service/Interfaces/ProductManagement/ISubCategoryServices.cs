@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Service.Interfaces.ProductManagement
 {
-    public interface ICategoryServices
+    public interface ISubCategoryServices
     {
-        Task<string> AddOneAsync(CategoryDto input);
-        Task<IEnumerable<Category>> GetAllAsync();
-        Task<Category> GetByIdAsync(int id);
+        Task<string> AddOneAsync(SubCategoryDto input);
+        Task<IEnumerable<SubCategory>> GetAllAsync();
+        Task<SubCategory> GetByIdAsync(int id);
     }
 }

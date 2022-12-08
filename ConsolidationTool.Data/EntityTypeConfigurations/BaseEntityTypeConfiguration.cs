@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Data.EntityTypeConfigurations
 {
-    public class BaseEntityTypeConfiguration : IEntityTypeConfiguration<Customer>
+    public class BaseEntityTypeConfiguration : IEntityTypeConfiguration<Category>
     {
-        public virtual void Configure(EntityTypeBuilder<Customer> builder)
+        public virtual void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property<bool>("IsDeleted")
                 .IsRequired()
                 .HasDefaultValue(false);
             builder.Property<DateTime>("InsertedAt")
                 .IsRequired()
-                .HasDefaultValueSql("SYSDATETIME()")
+                .HasDefaultValueSql("GETUTCDATE()")
                 .ValueGeneratedOnAdd();
             builder.Property<int>("InsertedBy")
                 .IsRequired()
