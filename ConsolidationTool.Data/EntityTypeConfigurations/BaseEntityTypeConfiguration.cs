@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ConsolidationTool.Data.EntityTypeConfigurations
 {
-    public class BaseEntityTypeConfiguration : IEntityTypeConfiguration<Category>
+    public class BaseEntityTypeConfiguration<T> : IEntityTypeConfiguration<T> where T : class
     {
-        public virtual void Configure(EntityTypeBuilder<Category> builder)
+        public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder.Property<bool>("IsDeleted")
                 .IsRequired()

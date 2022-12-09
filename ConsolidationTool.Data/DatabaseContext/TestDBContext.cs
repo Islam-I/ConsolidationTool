@@ -201,7 +201,10 @@ namespace ConsolidationTool.Data.DatabaseContext
                 entity.Property(e => e.Phone).HasMaxLength(30);
             });
 
-            modelBuilder.ApplyConfiguration(new BaseEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new BaseEntityTypeConfiguration<Category>());
+            modelBuilder.ApplyConfiguration(new BaseEntityTypeConfiguration<SubCategory>());
+            modelBuilder.ApplyConfiguration(new BaseEntityTypeConfiguration<Property>());
+
             base.OnModelCreating(modelBuilder);
         }
     }
