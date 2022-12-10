@@ -38,5 +38,6 @@ namespace ConsolidationTool.Service.Services.ProductMangament
             return await _unitOfWork.GetRepository<Property>().GetByIdAsync(id);
 
         }
+
     }
 }

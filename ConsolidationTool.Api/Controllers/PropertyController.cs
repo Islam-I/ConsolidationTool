@@ -28,11 +28,13 @@ namespace ConsolidationTool.Api.Controllers
             return Ok(await _propertyServices.GetByIdAsync(id));
         }
 
-        [HttpPost("AddOneCategory")]
+        [HttpPost("AddOneProperty")]
         public async Task<IActionResult> AddOneProperty(PropertyDto input)
         {
             var result = await _propertyServices.AddOneAsync(input);
             return Ok(result);
         }
+
+
     }
 }

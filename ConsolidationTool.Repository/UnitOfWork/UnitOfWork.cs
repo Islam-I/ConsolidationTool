@@ -16,7 +16,8 @@ namespace ConsolidationTool.Repository.UnitOfWork
 
         public IBaseRepository<Category> Category { get; private set; }
         public IBaseRepository<SubCategory> SubCategory { get; private set; }
-        public IBaseRepository<Property> Property { get; private set; }
+        //public IBaseRepository<Property> Property { get; private set; }
+        public IPropertyRepository Property { get; private set; }
 
 
         private readonly Dictionary<Type, object> _repositories = new Dictionary<Type, object>();
@@ -28,9 +29,7 @@ namespace ConsolidationTool.Repository.UnitOfWork
 
             Category = new BaseRepository<Category>(_context);
             SubCategory = new BaseRepository<SubCategory>(_context);
-            Property = new BaseRepository<Property>(_context);
-
-            //Books = new BooksRepository(_context);
+            Property = new PropertyRepository(_context);
         }
 
         public BaseRepository<T> GetRepository<T>(bool newRepo = false) where T : class//BaseEntity

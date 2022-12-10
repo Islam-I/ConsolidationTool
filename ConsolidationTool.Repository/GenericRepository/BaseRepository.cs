@@ -14,9 +14,10 @@ namespace ConsolidationTool.Repository.GenericRepository
             _context = context;
         }
 
+        // Queryable
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>().AsQueryable();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -56,6 +57,7 @@ namespace ConsolidationTool.Repository.GenericRepository
             return await query.SingleOrDefaultAsync(criteria);
         }
 
+        // Queryable
         public IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, string[] includes = null)
         {
             IQueryable<T> query = _context.Set<T>();
@@ -64,14 +66,16 @@ namespace ConsolidationTool.Repository.GenericRepository
                 foreach (var include in includes)
                     query = query.Include(include);
 
-            return query.Where(criteria).ToList();
+            return query.Where(criteria).AsQueryable();
         }
 
+        // Queryable
         public IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, int skip, int take)
         {
-            return _context.Set<T>().Where(criteria).Skip(skip).Take(take).ToList();
+            return _context.Set<T>().Where(criteria).Skip(skip).Take(take).AsQueryable();
         }
 
+        // Queryable
         public IEnumerable<T> FindAll(Expression<Func<T, bool>> criteria, int? skip, int? take,
             Expression<Func<T, object>> orderBy = null, string orderByDirection = "ASC")
         {
@@ -91,7 +95,7 @@ namespace ConsolidationTool.Repository.GenericRepository
                     query = query.OrderByDescending(orderBy);
             }
 
-            return query.ToList();
+            return query.AsQueryable();
         }
 
         public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> criteria, string[] includes = null)

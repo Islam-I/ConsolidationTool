@@ -10,5 +10,6 @@ namespace ConsolidationTool.Repository.NonGenericRepository
 {
     public interface IPropertyRepository : IBaseRepository<Property>
     {
+
     }
 }
