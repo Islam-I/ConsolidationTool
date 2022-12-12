@@ -16,8 +16,8 @@ namespace ConsolidationTool.Repository.UnitOfWork
 
         IBaseRepository<Category> Category { get; }
         IBaseRepository<SubCategory> SubCategory { get; }
-        IBaseRepository<Property> Property { get; }
-        //IBooksRepository Books { get; }
+        //IBaseRepository<Property> Property { get; }
+        IPropertyRepository Property { get; }
         Task<int> CompleteAsync();
         int Complete();
     }
