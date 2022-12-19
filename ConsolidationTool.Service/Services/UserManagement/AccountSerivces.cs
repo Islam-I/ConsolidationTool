@@ -1,5 +1,5 @@
 ﻿using ConsolidationTool.Core.Dtos;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using ConsolidationTool.Service.Interfaces.UserManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -16,12 +16,12 @@ namespace ConsolidationTool.Service.Services.UserManagement
     {
 
         private readonly IConfiguration _configuration;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<UserTbl> _userManager;
+        private readonly SignInManager<UserTbl> _signInManager;
         public AccountSerivces(
             IConfiguration configuration,
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            UserManager<UserTbl> userManager,
+            SignInManager<UserTbl> signInManager)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -30,9 +30,8 @@ namespace ConsolidationTool.Service.Services.UserManagement
 
         public async Task<IdentityResult> Register(ApplicationUserDto input)
         {
-            ApplicationUser newUser = new ApplicationUser();
+            UserTbl newUser = new UserTbl();
             newUser.UserName = input.UserName;
-            newUser.FirstName = input.FirstName;
             var result = await _userManager.CreateAsync(newUser, input.Password);
             return result;
         }
@@ -55,16 +54,16 @@ namespace ConsolidationTool.Service.Services.UserManagement
 
         }
 
-        private ApplicationUser CreateUser()
+        private UserTbl CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<ApplicationUser>();
+                return Activator.CreateInstance<UserTbl>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(UserTbl)}'. " +
+                    $"Ensure that '{nameof(UserTbl)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }

@@ -1,4 +1,4 @@
-﻿using ConsolidationTool.Data.Models;
+﻿using ConsolidationTool.Data.DBModels;
 using ConsolidationTool.Service.Helpers;
 using ConsolidationTool.Service.Interfaces.UserManagement;
 using Microsoft.AspNetCore.Identity;
@@ -12,11 +12,11 @@ namespace ConsolidationTool.Service.Services.UserManagement
 {
     public class AuthenticationServices : IAuthenticationServices
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly UserManager<UserTbl> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly JwtModel _jwt;
 
-        public AuthenticationServices(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IOptions<JwtModel> jwt)
+        public AuthenticationServices(UserManager<UserTbl> userManager, RoleManager<IdentityRole> roleManager, IOptions<JwtModel> jwt)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -31,11 +31,10 @@ namespace ConsolidationTool.Service.Services.UserManagement
             if (await _userManager.FindByNameAsync(model.Username) is not null)
                 return new AuthenticationModel { Message = "Username is already registered!" };
 
-            var user = new ApplicationUser
+            var user = new UserTbl
             {
                 UserName = model.Username,
                 Email = model.Email,
-                FirstName = model.FirstName
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -104,7 +103,7 @@ namespace ConsolidationTool.Service.Services.UserManagement
             return result.Succeeded ? string.Empty : "Sonething went wrong";
         }
 
-        private async Task<JwtSecurityToken> CreateJwtToken(ApplicationUser user)
+        private async Task<JwtSecurityToken> CreateJwtToken(UserTbl user)
         {
             var userClaims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);

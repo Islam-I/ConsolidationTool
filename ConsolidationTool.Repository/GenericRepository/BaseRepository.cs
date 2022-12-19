@@ -1,5 +1,4 @@
 ﻿using ConsolidationTool.Data.DatabaseContext;
-using ConsolidationTool.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -7,9 +6,9 @@ namespace ConsolidationTool.Repository.GenericRepository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {
-        private readonly TestDBContext _context;
+        private readonly ACT_TAX_INVOICE_CONSOLIDATIONContext _context;
 
-        public BaseRepository(TestDBContext context)
+        public BaseRepository(ACT_TAX_INVOICE_CONSOLIDATIONContext context)
         {
             _context = context;
         }

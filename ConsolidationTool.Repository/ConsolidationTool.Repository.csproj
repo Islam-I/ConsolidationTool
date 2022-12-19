@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ConsolidationTool.Data\ConsolidationTool.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NonGenericRepository\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 ﻿using ConsolidationTool.Core.Dtos;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Interfaces.ProductManagement;
 using System;
@@ -20,22 +20,17 @@ namespace ConsolidationTool.Service.Services.ProductMangament
 
         public async Task<string> AddOneAsync(CategoryDto input)
         {
-            Category model = new Category();
-            model.Name = input.Name;
-            model.Description = input.Description;
-            await _unitOfWork.GetRepository<Category>().AddAsync(model);
-            await _unitOfWork.CompleteAsync();
             return "success";
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<IEnumerable<CategorizationTbl>> GetAllAsync()
         {
-            return await _unitOfWork.GetRepository<Category>().GetAllAsync();
+            return await _unitOfWork.GetRepository<CategorizationTbl>().GetAllAsync();
         }
 
-        public async Task<Category> GetByIdAsync(int id)
+        public async Task<CategorizationTbl> GetByIdAsync(int id)
         {
-            return await _unitOfWork.GetRepository<Category>().GetByIdAsync(id);
+            return await _unitOfWork.GetRepository<CategorizationTbl>().GetByIdAsync(id);
         }
 
     }

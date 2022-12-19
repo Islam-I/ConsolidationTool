@@ -1,5 +1,5 @@
 ﻿using ConsolidationTool.Core.Dtos;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Interfaces.ProductManagement;
 using System;
@@ -19,23 +19,23 @@ namespace ConsolidationTool.Service.Services.ProductMangament
         }
         public async Task<string> AddOneAsync(SubCategoryDto input)
         {
-            SubCategory model = new SubCategory();
-            model.Name = input.Name;
-            model.Description = input.Description;
-            model.CategoryId = input.CategoryId;
-            await _unitOfWork.GetRepository<SubCategory>().AddAsync(model);
-            await _unitOfWork.CompleteAsync();
+            //SubCategory model = new SubCategory();
+            //model.Name = input.Name;
+            //model.Description = input.Description;
+            //model.CategoryId = input.CategoryId;
+            //await _unitOfWork.GetRepository<SubCategory>().AddAsync(model);
+            //await _unitOfWork.CompleteAsync();
             return "success";
         }
 
-        public async Task<IEnumerable<SubCategory>> GetAllAsync()
+        public async Task<IEnumerable<CategorizationDetailsTbl>> GetAllAsync()
         {
-                return await _unitOfWork.GetRepository<SubCategory>().GetAllAsync();
+                return await _unitOfWork.GetRepository<CategorizationDetailsTbl>().GetAllAsync();
         }
 
-        public async Task<SubCategory> GetByIdAsync(int id)
+        public async Task<CategorizationDetailsTbl> GetByIdAsync(int id)
         {
-            return await _unitOfWork.GetRepository<SubCategory>().GetByIdAsync(id);
+            return await _unitOfWork.GetRepository<CategorizationDetailsTbl>().GetByIdAsync(id);
 
         }
     }

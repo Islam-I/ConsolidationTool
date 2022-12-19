@@ -1,5 +1,5 @@
 ﻿using ConsolidationTool.Core.Dtos;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

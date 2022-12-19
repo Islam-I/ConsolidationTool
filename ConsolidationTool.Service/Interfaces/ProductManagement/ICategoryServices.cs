@@ -1,5 +1,5 @@
 ﻿using ConsolidationTool.Core.Dtos;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace ConsolidationTool.Service.Interfaces.ProductManagement
     public interface ICategoryServices
     {
         Task<string> AddOneAsync(CategoryDto input);
-        Task<IEnumerable<Category>> GetAllAsync();
-        Task<Category> GetByIdAsync(int id);
+        Task<IEnumerable<CategorizationTbl>> GetAllAsync();
+        Task<CategorizationTbl> GetByIdAsync(int id);
     }
 }

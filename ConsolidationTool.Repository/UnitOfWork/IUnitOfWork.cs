@@ -1,6 +1,4 @@
-﻿using ConsolidationTool.Data.Models;
-using ConsolidationTool.Repository.GenericRepository;
-using ConsolidationTool.Repository.NonGenericRepository;
+﻿using ConsolidationTool.Repository.GenericRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +12,6 @@ namespace ConsolidationTool.Repository.UnitOfWork
     {
         BaseRepository<T> GetRepository<T>(bool newRepo = false) where T : class;
 
-        IBaseRepository<Category> Category { get; }
-        IBaseRepository<SubCategory> SubCategory { get; }
-        //IBaseRepository<Property> Property { get; }
-        IPropertyRepository Property { get; }
         Task<int> CompleteAsync();
         int Complete();
     }

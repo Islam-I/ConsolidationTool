@@ -1,5 +1,5 @@
 using ConsolidationTool.Data.DatabaseContext;
-using ConsolidationTool.Data.Models;
+using ConsolidationTool.Data.DBModels;
 using ConsolidationTool.Repository.UnitOfWork;
 using ConsolidationTool.Service.Helpers;
 using ConsolidationTool.Service.Interfaces;
@@ -19,13 +19,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<TestDBContext>(
+builder.Services.AddDbContext<ACT_TAX_INVOICE_CONSOLIDATIONContext>(
     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<ICategoryServices, CategoryServices>();
 builder.Services.AddScoped<ISubCategoryServices, SubCategoryServices>();
 builder.Services.AddScoped<IPropertyServices, PropertyServices>();
@@ -33,11 +32,11 @@ builder.Services.AddScoped<IPropertyServices, PropertyServices>();
 builder.Services.AddScoped<IAccountServices, AccountSerivces>();
 builder.Services.AddScoped<IAuthenticationServices, AuthenticationServices>();
 builder.Services.Configure<JwtModel>(builder.Configuration.GetSection("Jwt"));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+builder.Services.AddIdentity<UserTbl, IdentityRole>(options =>
 {
     options.User.RequireUniqueEmail = false;
 })
-    .AddEntityFrameworkStores<TestDBContext>()
+    .AddEntityFrameworkStores<ACT_TAX_INVOICE_CONSOLIDATIONContext>()
     .AddDefaultTokenProviders();
 // Adding Authentication
 builder.Services.AddAuthentication(options =>
@@ -74,7 +73,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<TestDBContext>();
+    var context = scope.ServiceProvider.GetRequiredService<ACT_TAX_INVOICE_CONSOLIDATIONContext>();
 
     context.Database.Migrate();
 };
